@@ -1,0 +1,2 @@
+Cartella per i font tuoi (formato .woff2 consigliato).
+Se non ne carichi nessuno, il sito usa Noto Serif Gurmukhi da Google Fonts.

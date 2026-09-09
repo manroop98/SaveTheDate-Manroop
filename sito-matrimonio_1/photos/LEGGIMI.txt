@@ -1,0 +1,2 @@
+story-1.jpg  story-2.jpg  story-3.jpg  story-4.jpg
+Ritaglio 4:5 verticale, lato lungo 1400 px.
