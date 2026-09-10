@@ -381,13 +381,59 @@ html[data-lang="pa"] .invocation{
   color:rgba(248,240,220,.55);
 }
 
-/* ---------- galleria ---------- */
-.gal-sec{padding-top:clamp(60px,11vw,100px);padding-bottom:clamp(60px,11vw,100px)}
-.gallery{display:grid;gap:clamp(14px,3vw,22px)}
-.gallery figure{margin:0;overflow:hidden;background:var(--paper-2);aspect-ratio:4/5}
-.gallery figure img{width:100%;height:100%;object-fit:cover}
+/* ---------- galleria a scorrimento ---------- */
+.gal-sec{
+  position:relative;
+  height:340vh;              /* lo spazio in cui avviene il passaggio */
+  background:var(--paper);
+}
+.gal-stage{
+  position:sticky;top:0;
+  height:100svh;
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.gal-inner{
+  position:relative;
+  width:min(78vw,420px);
+  aspect-ratio:4/5;
+}
+.gal-fig{
+  position:absolute;inset:0;margin:0;
+  overflow:hidden;
+  background:var(--paper-2);
+  opacity:0;
+  will-change:transform,opacity;
+  box-shadow:0 24px 60px -28px rgba(42,28,16,.55);
+}
+.gal-fig img{width:100%;height:100%;object-fit:cover}
 
-/* ---------- storia ---------- */
+.gal-dots{
+  position:absolute;left:50%;bottom:-38px;
+  transform:translateX(-50%);
+  display:flex;gap:8px;
+}
+.gal-dots i{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--ink-3);opacity:.28;
+  transition:opacity .35s ease,transform .35s ease;
+}
+.gal-dots i.on{opacity:1;background:var(--gold);transform:scale(1.5)}
+
+@media(min-width:820px){
+  .gal-inner{width:min(38vw,460px)}
+  .gal-dots{bottom:-46px}
+}
+/* niente effetto se l'utente non vuole animazioni */
+@media(prefers-reduced-motion:reduce){
+  .gal-sec{height:auto;padding:clamp(60px,11vw,100px) var(--pad)}
+  .gal-stage{position:static;height:auto;display:block}
+  .gal-inner{width:100%;aspect-ratio:auto;display:grid;gap:18px}
+  .gal-fig{position:relative;inset:auto;opacity:1;aspect-ratio:4/5}
+  .gal-dots{display:none}
+}
+
+/* ---------- storia ---------- *//* ---------- storia ---------- */
 .story{display:grid;gap:clamp(64px,12vw,96px)}
 .chapter{text-align:center}
 .chapter figure{margin:0 0 24px;overflow:hidden;background:var(--paper-2);aspect-ratio:4/5}
@@ -507,9 +553,6 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
   .close{--hero-img:url('pond-16x9.jpg')}
   .hero-inner{max-width:820px}
   .story{grid-template-columns:repeat(2,1fr);column-gap:64px;row-gap:110px}
-  .gallery{grid-template-columns:repeat(3,1fr)}
-  .gallery figure:nth-child(1),
-  .gallery figure:nth-child(3){margin-top:64px}
   .chapter:nth-child(even){margin-top:100px}
   .families{max-width:44ch}
   .event{
@@ -675,7 +718,7 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
       <span data-en="Sukhpreet Kaur" data-pa="ਸੁਖਪ੍ਰੀਤ ਕੌਰ">Sukhpreet Kaur</span>
     </h1>
 
-    <div class="datepill" data-en="SATURDAY, 30 JANUARY 2027" data-pa="ਸ਼ਨੀਵਾਰ, 30 ਜਨਵਰੀ 2027">SATURDAY, 30 JANUARY 2027</div>
+    <div class="datepill" data-en="SATURDAY, 30 JANUARY 2027" data-pa="ਸਨਿੱਚਰਵਾਰ, 30 ਜਨਵਰੀ 2027">SATURDAY, 30 JANUARY 2027</div>
     <p class="venue label" data-en="KESARPUR · KAPURTHALA · PUNJAB" data-pa="ਕੇਸਰਪੁਰ · ਕਪੂਰਥਲਾ · ਪੰਜਾਬ">KESARPUR · KAPURTHALA · PUNJAB</p>
 
     <div class="count-wrap">
@@ -689,7 +732,7 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
     </div>
 
     <div class="cal-wrap">
-      <button class="btn btn-cal" id="calAll" data-en="Add all dates to calendar" data-pa="ਸਾਰੀਆਂ ਤਾਰੀਖ਼ਾਂ ਕੈਲੰਡਰ ਵਿੱਚ ਜੋੜੋ">Add all dates to calendar</button>
+      <button class="btn btn-cal" id="calAll" data-en="Add all dates to calendar" data-pa="ਸਾਰੀਆਂ ਤਾਰੀਖ਼ਾਂ ਕੈਲੰਡਰ ਵਿੱਚ ਪਾਓ">Add all dates to calendar</button>
     </div>
 
     <div class="scroll-cue label" data-en="SCROLL" data-pa="ਹੇਠਾਂ ਜਾਓ">SCROLL</div>
@@ -697,12 +740,13 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
 </header>
 
 <!-- =========================== FOTO =========================== -->
-<section class="sec gal-sec" id="photos">
-  <div class="sec-inner">
-    <div class="gallery">
-      <figure class="rv"><img src="photos/1.jpg" alt="" loading="lazy"></figure>
-      <figure class="rv"><img src="photos/2.jpg" alt="" loading="lazy"></figure>
-      <figure class="rv"><img src="photos/3.jpg" alt="" loading="lazy"></figure>
+<section class="gal-sec" id="photos">
+  <div class="gal-stage">
+    <div class="gal-inner">
+      <figure class="gal-fig"><img src="photos/1.jpg" alt=""></figure>
+      <figure class="gal-fig"><img src="photos/2.jpg" alt=""></figure>
+      <figure class="gal-fig"><img src="photos/3.jpg" alt=""></figure>
+      <div class="gal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
     </div>
   </div>
 </section>
@@ -729,7 +773,7 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
       <p class="inv-name rv" data-en="Sukhpreet Kaur" data-pa="ਸੁਖਪ੍ਰੀਤ ਕੌਰ">Sukhpreet Kaur</p>
       <p class="inv-sub rv" data-en="Daughter of Sardar Gurmail Singh &amp; Sardarni Kulwinder Kaur" data-pa="(ਸਪੁੱਤਰੀ ਸਰਦਾਰ ਗੁਰਮੇਲ ਸਿੰਘ ਤੇ ਸਰਦਾਰਨੀ ਕੁਲਵਿੰਦਰ ਕੌਰ)">Daughter of Sardar Gurmail Singh &amp; Sardarni Kulwinder Kaur</p>
 
-      <p class="inv-close rv" data-en="Your presence will make our celebration  complete." data-pa="ਦੇ ਨਾਲ ਹੋਣਾ ਨੀਯਤ ਹੋਇਆ ਹੈ।">Your presence will make the occasion complete.</p>
+      <p class="inv-close rv" data-en="Your presence will make our celebration complete." data-pa="ਦੇ ਨਾਲ ਹੋਣਾ ਨੀਯਤ ਹੋਇਆ ਹੈ।">Your presence will make the occasion complete.</p>
 
     </div>
   </div>
@@ -1046,7 +1090,7 @@ function loadClip(c){
 }
 
 /* --- musica: un brano diverso a ogni apertura --- */
-const TRACKS = ['music/1.mp3','music/2.mp3','music/3.mp3','music/4.mp3','music/5.mp3','music/6.mp3'];
+const TRACKS = ['music/1.mp3','music/2.mp3','music/3.mp3','music/4.mp3','music/5.mp3','music/6.mp3','music/7.mp3'];
 function pickTrack(){
   return TRACKS[Math.floor(Math.random() * TRACKS.length)];
 }
@@ -1165,6 +1209,68 @@ function observeReveals(){
   }
   document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
 }
+
+
+/* ============================================================
+   9. GALLERIA: le foto si alternano seguendo lo scorrimento
+   ============================================================ */
+(function gallery(){
+  const sec  = document.getElementById('photos');
+  if(!sec) return;
+  const figs = Array.prototype.slice.call(sec.querySelectorAll('.gal-fig'));
+  const dots = Array.prototype.slice.call(sec.querySelectorAll('.gal-dots i'));
+  if(!figs.length) return;
+
+  const reduce = window.matchMedia &&
+                 window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ figs.forEach(f=>f.style.opacity=1); return; }
+
+  const n = figs.length;
+  const seg = 1 / n;
+  const clamp = (v,a,b)=> v < a ? a : (v > b ? b : v);
+  let ticking = false;
+
+  function draw(){
+    ticking = false;
+    const rect  = sec.getBoundingClientRect();
+    const range = sec.offsetHeight - window.innerHeight;
+    if(range <= 0) return;
+    const p = clamp(-rect.top / range, 0, 1);   /* 0 all'inizio, 1 alla fine */
+
+    let active = 0;
+    figs.forEach(function(f,i){
+      /* progressione locale della foto i: 0 quando entra, 1 quando esce */
+      const t = (p - i*seg) / seg;
+
+      let op, y, sc;
+      if(t < -0.35 || t > 1.35){
+        op = 0; y = t < 0 ? 70 : -70; sc = .94;
+      } else if(t < 0.22){
+        const k = clamp((t + 0.35) / 0.57, 0, 1);   /* entra */
+        op = k; y = (1-k) * 70; sc = .94 + k*.06;
+      } else if(t > 0.78){
+        const k = clamp((1.35 - t) / 0.57, 0, 1);   /* esce */
+        op = k; y = -(1-k) * 70; sc = .94 + k*.06;
+      } else {
+        op = 1; y = 0; sc = 1;
+      }
+
+      f.style.opacity   = op.toFixed(3);
+      f.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      f.style.zIndex    = Math.round(op * 10);
+      if(op > 0.5) active = i;
+    });
+
+    dots.forEach(function(d,i){ d.classList.toggle('on', i === active); });
+  }
+
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(draw); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  draw();
+})();
 
 /* boot */
 applyLang('en');
