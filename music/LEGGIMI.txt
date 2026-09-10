@@ -1,2 +1,9 @@
-wedding.mp3 qui presente e' SOLO UNA PROVA (arpeggio sintetico).
-Sostituiscilo col tuo brano, tenendo lo stesso nome: wedding.mp3
+1.mp3  2.mp3  3.mp3  4.mp3
+
+Il sito ne sceglie uno A CASO a ogni apertura: ogni invitato
+sente un brano diverso.
+
+Quelli presenti ora sono SOLO DI PROVA (arpeggi sintetici).
+Sostituiscili con i tuoi, tenendo gli stessi nomi.
+Puoi metterne anche meno di quattro: se un file manca,
+il sito passa al successivo da solo.

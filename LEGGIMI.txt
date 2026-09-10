@@ -3,16 +3,14 @@ STRUTTURA — i nomi vanno rispettati esattamente
   index.html
   pond-9x16.mp4 / .webm / .jpg    clip verticale, telefono
   pond-16x9.mp4 / .webm / .jpg    clip orizzontale, computer
-  _headers                        cache (serve solo su Netlify)
+  envelope-card.webp              immagine dentro la busta (FACOLTATIVA)
+  _headers                        cache (solo su Netlify)
 
-  photos/story-1.jpg ... story-4.jpg   ritaglio 4:5 verticale, lato lungo 1400 px
-  music/wedding.mp3                    brano di sottofondo
-
-Il sito sceglie la clip in base alla forma della finestra.
+  icons/    ev-path, ev-bhog, ev-jaago, ev-anand, ev-reception (.webp)
+  photos/   1.jpg 2.jpg 3.jpg     ritaglio 4:5 verticale
+  music/    1.mp3 2.mp3 3.mp3 4.mp3   scelti a caso a ogni apertura
+  fonts/    facoltativa
 
 DA COMPILARE dentro index.html
-  - il nome dello sposo: cerca "Your Name", compare due volte
-  - il titolo della pagina e la riga in fondo
-  - il numero WhatsApp: cerca "wa.me/00000000000"
+  - numero WhatsApp: cerca "wa.me/00000000000"
   - date, orari e luoghi: array EVENTS in cima al blocco <script>
-  - i quattro capitoli della sezione "Our Story"

@@ -2,6 +2,7 @@
 <html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="theme-color" id="tc" content="#4E0E18">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Manroop &amp; Sukhpreet | 30.01.2027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,10 +146,13 @@ html[data-lang="pa"] .script{font-family:var(--gurmukhi);font-style:normal}
 @keyframes envFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 .env-body{position:relative;aspect-ratio:1.45/1;transform-style:preserve-3d}
 .env-card{
-  position:absolute;left:7%;right:7%;top:12%;height:76%;
+  position:absolute;left:12%;right:12%;top:10%;height:78%;
   background:var(--paper);display:grid;place-items:center;
   box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:1;
-  transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
+  overflow:hidden;
+  transition:height 1.1s cubic-bezier(.2,.8,.2,1),
+             top 1.1s cubic-bezier(.2,.8,.2,1),
+             box-shadow 1.1s ease;
 }
 .env-card span{font-family:var(--body);font-size:9.5px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--ink-2)}
 html[data-lang="pa"] .env-card span{font-family:var(--gurmukhi);letter-spacing:.02em;text-indent:0;font-size:14px;text-transform:none}
@@ -171,7 +175,37 @@ html[data-lang="pa"] .env-card span{font-family:var(--gurmukhi);letter-spacing:.
 }
 #env.open .env-flap{transform:rotateX(-172deg)}
 #env.open .env-seal{transform:scale(.5) translateY(38px) rotate(-24deg);opacity:0}
-#env.open .env-card{transform:translateY(-40%);transition-delay:.5s}
+#env.open .env-card{
+  top:-72%;height:152%;
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  transition-delay:.45s;
+}
+.env-hint{
+  position:absolute;left:0;right:0;top:70%;z-index:5;
+  text-align:center;
+  font-family:var(--body);font-size:8.5px;
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:rgba(42,28,16,.3);
+  transition:opacity .4s ease;
+}
+html[data-lang="pa"] .env-hint{font-family:var(--gurmukhi);letter-spacing:.02em;text-indent:0;font-size:11px;text-transform:none}
+#env.open .env-hint{opacity:0}
+.env-art{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 22%;
+  transition:object-position 1.1s cubic-bezier(.2,.8,.2,1);
+}
+#env.open .env-art{object-position:center 50%}
+.env-card span{position:relative;z-index:1}
+/* con l'immagine caricata la scritta non serve: e' gia' dentro */
+.env-card.has-art span{display:none}
+
+.cal-wrap{margin-top:34px}
+.btn-cal{
+  border-color:var(--line-lt);color:rgba(248,240,220,.8);
+}
+.btn-cal:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--deep-3)}
+
 .env-cap{margin-top:32px;color:var(--paper)}
 .env-cap .script{display:block;line-height:1;font-size:clamp(32px,9vw,44px)}
 html[data-lang="pa"] .env-cap .script{font-size:clamp(19px,5vw,25px)}
@@ -508,11 +542,13 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
     <button class="env-btn" id="envBtn" aria-label="Apri l'invito">
       <div class="env-body">
         <div class="env-card">
+          <img class="env-art" src="envelope-card.webp" alt="" onload="this.parentNode.classList.add('has-art')" onerror="this.remove()">
           <span data-en="You are invited" data-pa="ਸੱਦਾ ਪੱਤਰ">You are invited</span>
         </div>
         <div class="env-front"></div>
         <div class="env-flap"></div>
         <div class="env-seal">&#2676;</div>
+        <span class="env-hint" data-en="click to open" data-pa="ਖੋਲ੍ਹਣ ਲਈ ਕਲਿੱਕ ਕਰੋ">click to open</span>
       </div>
     </button>
     <div class="env-cap">
@@ -624,10 +660,7 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
     </svg>
   </button>
 </div>
-<audio id="track" loop preload="metadata">
-  <!-- Drop your shabad or folk track here, e.g. music/tumbi.mp3 -->
-  <source src="music/wedding.mp3" type="audio/mpeg">
-</audio>
+<audio id="track" loop preload="none"></audio>
 
 <!-- =========================== HERO =========================== -->
 <header class="hero">
@@ -653,6 +686,10 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
         <div><b id="cm">—</b><span data-en="MINS" data-pa="ਮਿੰਟ">MINS</span></div>
         <div><b id="cs">—</b><span data-en="SECS" data-pa="ਸਕਿੰਟ">SECS</span></div>
       </div>
+    </div>
+
+    <div class="cal-wrap">
+      <button class="btn btn-cal" id="calAll" data-en="Add all dates to calendar" data-pa="ਸਾਰੀਆਂ ਤਾਰੀਖ਼ਾਂ ਕੈਲੰਡਰ ਵਿੱਚ ਪਾਓ">Add all dates to calendar</button>
     </div>
 
     <div class="scroll-cue label" data-en="SCROLL" data-pa="ਹੇਠਾਂ ਜਾਓ">SCROLL</div>
@@ -844,23 +881,29 @@ function buildEvents(){
 function icsStamp(iso){
   return new Date(iso).toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
 }
-function downloadIcs(e){
-  const body = [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//invite//EN','BEGIN:VEVENT',
-    'UID:' + Date.now() + '@wedding',
+function vevent(e,i){
+  return [
+    'BEGIN:VEVENT',
+    'UID:' + Date.now() + '-' + i + '@wedding',
     'DTSTAMP:' + icsStamp(new Date().toISOString()),
     'DTSTART:' + icsStamp(e.start),
-    'DTEND:' + icsStamp(e.end),
-    'SUMMARY:' + e.name.en,
+    'DTEND:'   + icsStamp(e.end),
+    'SUMMARY:' + e.name.en + ' \u2014 Manroop & Sukhpreet',
     'LOCATION:' + e.place.en,
-    'END:VEVENT','END:VCALENDAR'
+    'END:VEVENT'
   ].join('\r\n');
+}
+function saveIcs(list,filename){
+  const body = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//wedding//invite//EN','CALSCALE:GREGORIAN']
+    .concat(list.map(vevent))
+    .concat(['END:VCALENDAR']).join('\r\n');
   const url = URL.createObjectURL(new Blob([body],{type:'text/calendar'}));
   const a = document.createElement('a');
-  a.href = url;
-  a.download = e.name.en.replace(/\s+/g,'-').toLowerCase() + '.ics';
-  a.click();
+  a.href = url; a.download = filename; a.click();
   URL.revokeObjectURL(url);
+}
+function downloadIcs(e){
+  saveIcs([e], e.name.en.replace(/\s+/g,'-').toLowerCase() + '.ics');
 }
 
 /* ============================================================
@@ -967,6 +1010,7 @@ function dismissIntro(){
   dismissed = true;
   if(safetyTimer) clearTimeout(safetyTimer);
   intro.classList.add('gone');
+  themeColor('#4E0E18');
   document.body.classList.remove('is-locked');
   setTimeout(function(){ if(intro.parentNode) intro.remove(); }, 1100);
 }
@@ -975,6 +1019,7 @@ function dismissIntro(){
 function onPlaying(){
   intro.classList.add('has-video');
   vid.classList.add('ready');
+  themeColor('#0C3A35');   /* il verde dell'acqua */
   vid.addEventListener('ended', function(){ setTimeout(dismissIntro, 1400); }, {once:true});
 }
 
@@ -986,6 +1031,7 @@ function onVideoFail(){
     return;
   }
   intro.classList.remove('has-video');   /* resta la scena SVG */
+  themeColor('#0C3A35');
 }
 
 function loadClip(c){
@@ -999,7 +1045,19 @@ function loadClip(c){
   if(pr && pr.catch) pr.catch(function(){});
 }
 
-/* --- musica --- */
+/* --- musica: un brano diverso a ogni apertura --- */
+const TRACKS = ['music/1.mp3','music/2.mp3','music/3.mp3','music/4.mp3','music/5.mp3','music/6.mp3'];
+function pickTrack(){
+  return TRACKS[Math.floor(Math.random() * TRACKS.length)];
+}
+let trackIdx = 0;
+function loadTrack(){
+  const src = TRACKS[trackIdx % TRACKS.length];
+  track.innerHTML = '<source src="' + src + '" type="audio/mpeg">';
+  track.load();
+}
+
+
 const MUSIC_LBL = {
   play: {en:'Riproduci la musica', pa:'\u0a38\u0a70\u0a17\u0a40\u0a24 \u0a1a\u0a32\u0a3e\u0a13'},
   stop: {en:'Ferma la musica',     pa:'\u0a38\u0a70\u0a17\u0a40\u0a24 \u0a2c\u0a70\u0a26'}
@@ -1016,8 +1074,14 @@ function startMusic(){
       mBtn.classList.remove('nomusic');
       mBtn.setAttribute('aria-pressed','true');
       musicLabel(true);
-    }).catch(function(){ noMusic(); });
+    }).catch(function(){ nextTrack(); });
   }
+}
+function nextTrack(){
+  trackIdx++;
+  if(trackIdx >= TRACKS.length){ noMusic(); return; }
+  loadTrack();
+  startMusic();
 }
 function noMusic(){
   mBtn.classList.add('nomusic');
@@ -1025,7 +1089,11 @@ function noMusic(){
   mBtn.setAttribute('aria-pressed','false');
   mBtn.setAttribute('aria-label', (LANG === 'pa') ? '\u0a38\u0a70\u0a17\u0a40\u0a24 \u0a09\u0a2a\u0a32\u0a2c\u0a27 \u0a28\u0a39\u0a40\u0a02' : 'Nessun brano caricato');
 }
-track.addEventListener('error', noMusic);
+track.addEventListener('error', nextTrack, true);
+
+/* --- colore della barra di sistema: segue quello che si vede --- */
+const tc = document.getElementById('tc');
+function themeColor(c){ if(tc) tc.setAttribute('content', c); }
 
 /* --- apertura della busta: l'unico gesto utente della pagina --- */
 function openEnvelope(){
@@ -1033,6 +1101,8 @@ function openEnvelope(){
   opened = true;
   env.classList.add('open');
 
+  trackIdx = Math.floor(Math.random() * TRACKS.length);
+  loadTrack();
   track.volume = 0.45;
   startMusic();              /* dentro il gesto, altrimenti viene bloccata */
   loadClip(pickClip());
@@ -1042,7 +1112,7 @@ function openEnvelope(){
   setTimeout(function(){
     env.classList.add('gone');
     setTimeout(function(){ if(env.parentNode) env.remove(); }, 900);
-  }, 1600);
+  }, 2700);
 }
 
 /* --- ascoltatori --- */
@@ -1050,6 +1120,9 @@ vid.addEventListener('playing', onPlaying, {once:true});
 vid.addEventListener('error', onVideoFail, true);
 document.getElementById('envBtn').addEventListener('click', openEnvelope);
 document.getElementById('skip').addEventListener('click', dismissIntro);
+document.getElementById('calAll').addEventListener('click', function(){
+  saveIcs(EVENTS, 'manroop-sukhpreet-2027.ics');
+});
 
 mBtn.addEventListener('click', function(){
   if(mBtn.classList.contains('nomusic')) return;
