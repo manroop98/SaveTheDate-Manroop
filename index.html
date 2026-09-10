@@ -39,11 +39,11 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-weight:300;font-size:16px;
-  line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  line-height:1.75;overflow-x:clip;-webkit-font-smoothing:antialiased;
 }
 body.is-locked{overflow:hidden}
 img{max-width:100%;display:block}
@@ -389,7 +389,7 @@ html[data-lang="pa"] .invocation{
 }
 .gal-stage{
   position:sticky;top:0;
-  height:100svh;
+  height:100vh;height:100svh;
   display:grid;place-items:center;
   overflow:hidden;
 }
@@ -424,13 +424,9 @@ html[data-lang="pa"] .invocation{
   .gal-inner{width:min(38vw,460px)}
   .gal-dots{bottom:-46px}
 }
-/* niente effetto se l'utente non vuole animazioni */
+/* con "riduci movimento" resta tutto al suo posto: cambia solo la dissolvenza */
 @media(prefers-reduced-motion:reduce){
-  .gal-sec{height:auto;padding:clamp(60px,11vw,100px) var(--pad)}
-  .gal-stage{position:static;height:auto;display:block}
-  .gal-inner{width:100%;aspect-ratio:auto;display:grid;gap:18px}
-  .gal-fig{position:relative;inset:auto;opacity:1;aspect-ratio:4/5}
-  .gal-dots{display:none}
+  .gal-fig{transition:opacity .2s linear}
 }
 
 /* ---------- storia ---------- *//* ---------- storia ---------- */
@@ -1221,9 +1217,8 @@ function observeReveals(){
   const dots = Array.prototype.slice.call(sec.querySelectorAll('.gal-dots i'));
   if(!figs.length) return;
 
-  const reduce = window.matchMedia &&
-                 window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ figs.forEach(f=>f.style.opacity=1); return; }
+  const reduce = !!(window.matchMedia &&
+                    window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   const n = figs.length;
   const seg = 1 / n;
@@ -1256,7 +1251,9 @@ function observeReveals(){
       }
 
       f.style.opacity   = op.toFixed(3);
-      f.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      f.style.transform = reduce
+        ? 'none'
+        : 'translate3d(0,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
       f.style.zIndex    = Math.round(op * 10);
       if(op > 0.5) active = i;
     });
@@ -1269,6 +1266,8 @@ function observeReveals(){
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
+  window.addEventListener('orientationchange', onScroll);
+  window.addEventListener('load', onScroll);
   draw();
 })();
 
