@@ -12,19 +12,21 @@
    TOKENS — colori campionati dal video
    ============================================================ */
 :root{
-  --water:#0C3A35;
-  --water-2:#134A44;
-  --water-3:#062622;
-  --cream:#F5F0E4;
-  --cream-2:#E8E0CD;
-  --ink:#14110C;
-  --ink-2:#544D40;
-  --ink-3:#8F8674;
-  --red:#9B1F2E;
-  --gold:#BE8A3D;
+  --deep:#6B1420;
+  --deep-2:#8A2130;
+  --deep-3:#4E0E18;
+  --paper:#F8F0DC;
+  --paper-2:#EFE2C2;
+  --ink:#2A1C10;
+  --ink-2:#5E4B33;
+  --ink-3:#9A8869;
+  --red:#B02A38;
+  --gold:#C79B48;
+  --gold-lt:#E7C87E;
+  --white:#FFFCF4;
 
-  --line:rgba(20,17,12,.16);
-  --line-lt:rgba(245,240,228,.24);
+  --line:rgba(42,28,16,.18);
+  --line-lt:rgba(231,200,126,.34);
 
   --display:'Bodoni Moda',Didot,Georgia,serif;
   --body:'Jost',system-ui,sans-serif;
@@ -38,7 +40,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--cream);color:var(--ink);
+  margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-weight:300;font-size:16px;
   line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
@@ -85,8 +87,9 @@ html[data-lang="pa"] .script{font-family:var(--gurmukhi);font-style:normal}
 }
 .dbl svg{width:17px;height:auto;flex:0 0 auto;opacity:.85}
 .dbl svg path{fill:none;stroke:var(--gold);stroke-width:1.3}
+.sec-dark .dbl svg path,.close .dbl svg path{stroke:var(--gold-lt)}
 .sec-dark .dbl::before,.sec-dark .dbl::after,.close .dbl::before,.close .dbl::after{
-  border-color:var(--gold-lt,#D8B473);opacity:.55;
+  border-color:var(--gold-lt);opacity:.55;
 }
 
 /* cornice a filetto doppio attorno alla prima schermata */
@@ -96,14 +99,14 @@ html[data-lang="pa"] .script{font-family:var(--gurmukhi);font-style:normal}
   content:"";position:absolute;
   top:calc(-1 * var(--fr));right:calc(-1 * var(--fr));
   bottom:calc(-1 * var(--fr));left:calc(-1 * var(--fr));
-  border:1px solid rgba(190,138,61,.4);
+  border:1px solid rgba(231,200,126,.4);
   pointer-events:none;
 }
 .frame::after{
   content:"";position:absolute;
   top:calc(-1 * var(--fr) + 5px);right:calc(-1 * var(--fr) + 5px);
   bottom:calc(-1 * var(--fr) + 5px);left:calc(-1 * var(--fr) + 5px);
-  border:1px solid rgba(190,138,61,.18);
+  border:1px solid rgba(231,200,126,.18);
   pointer-events:none;
 }
 
@@ -133,7 +136,7 @@ html[data-lang="pa"] .script{font-family:var(--gurmukhi);font-style:normal}
    ============================================================ */
 #env{
   position:fixed;inset:0;z-index:95;display:grid;place-items:center;
-  padding:var(--pad);background:var(--water-3);
+  padding:var(--pad);background:var(--deep-3);
   transition:opacity .8s ease,visibility .8s;
 }
 #env.gone{opacity:0;visibility:hidden;pointer-events:none}
@@ -143,14 +146,14 @@ html[data-lang="pa"] .script{font-family:var(--gurmukhi);font-style:normal}
 .env-body{position:relative;aspect-ratio:1.45/1;transform-style:preserve-3d}
 .env-card{
   position:absolute;left:7%;right:7%;top:12%;height:76%;
-  background:var(--cream);display:grid;place-items:center;
+  background:var(--paper);display:grid;place-items:center;
   box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:1;
   transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
 }
 .env-card span{font-family:var(--body);font-size:9.5px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--ink-2)}
 html[data-lang="pa"] .env-card span{font-family:var(--gurmukhi);letter-spacing:.02em;text-indent:0;font-size:14px;text-transform:none}
 .env-front{
-  position:absolute;inset:0;z-index:2;background:var(--cream-2);
+  position:absolute;inset:0;z-index:2;background:var(--paper-2);
   box-shadow:0 26px 60px -18px rgba(0,0,0,.6);
   clip-path:polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
 }
@@ -159,26 +162,26 @@ html[data-lang="pa"] .env-card span{font-family:var(--gurmukhi);letter-spacing:.
   transform-origin:top center;transform:rotateX(0deg);
   transition:transform 1s cubic-bezier(.55,.06,.3,1);backface-visibility:hidden;
 }
-.env-flap::before{content:"";position:absolute;inset:0;background:var(--cream);clip-path:polygon(0 0,100% 0,50% 100%)}
+.env-flap::before{content:"";position:absolute;inset:0;background:var(--paper);clip-path:polygon(0 0,100% 0,50% 100%)}
 .env-seal{
   position:absolute;left:50%;top:47%;width:52px;height:52px;margin:-26px 0 0 -26px;
   border-radius:50%;z-index:4;background:var(--red);display:grid;place-items:center;
-  font-family:var(--ek);font-size:24px;line-height:1;color:var(--cream);
+  font-family:var(--ek);font-size:24px;line-height:1;color:var(--paper);
   transition:transform .6s cubic-bezier(.5,-.4,.6,1),opacity .6s ease;
 }
 #env.open .env-flap{transform:rotateX(-172deg)}
 #env.open .env-seal{transform:scale(.5) translateY(38px) rotate(-24deg);opacity:0}
 #env.open .env-card{transform:translateY(-40%);transition-delay:.5s}
-.env-cap{margin-top:32px;color:var(--cream)}
+.env-cap{margin-top:32px;color:var(--paper)}
 .env-cap .script{display:block;line-height:1;font-size:clamp(32px,9vw,44px)}
 html[data-lang="pa"] .env-cap .script{font-size:clamp(19px,5vw,25px)}
-.env-cap small{display:block;margin-top:14px;font-size:10px;letter-spacing:.3em;text-indent:.3em;color:rgba(245,240,228,.5)}
+.env-cap small{display:block;margin-top:14px;font-size:10px;letter-spacing:.3em;text-indent:.3em;color:rgba(248,240,220,.5)}
 html[data-lang="pa"] .env-cap small{letter-spacing:.03em;font-size:12px}
 
 /* ============================================================
    INTRO
    ============================================================ */
-#intro{position:fixed;inset:0;z-index:90;background:var(--water-3);overflow:hidden;transition:opacity 1s ease,visibility 1s}
+#intro{position:fixed;inset:0;z-index:90;background:var(--deep-3);overflow:hidden;transition:opacity 1s ease,visibility 1s}
 #intro.gone{opacity:0;visibility:hidden;pointer-events:none}
 #introVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent;opacity:0;transition:opacity .5s ease}
 #introVideo.ready{opacity:1}
@@ -197,12 +200,12 @@ html[data-lang="pa"] .env-cap small{letter-spacing:.03em;font-size:12px}
 .pad{animation:driftpad 14s ease-in-out infinite}
 @keyframes driftpad{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,-5px)}}
 .intro-txt{position:absolute;left:0;right:0;top:76%;transform:translateY(-50%);text-align:center;padding:0 var(--pad);pointer-events:none}
-.intro-txt .script{display:block;font-size:clamp(38px,11vw,62px);color:var(--cream);opacity:0;animation:washIn 2s 5.2s ease both}
-.intro-txt small{display:block;margin-top:14px;font-size:10px;letter-spacing:.3em;text-indent:.3em;color:rgba(245,240,228,.6);opacity:0;animation:washIn 1.6s 6.1s ease both}
+.intro-txt .script{display:block;font-size:clamp(38px,11vw,62px);color:var(--paper);opacity:0;animation:washIn 2s 5.2s ease both}
+.intro-txt small{display:block;margin-top:18px;font-size:clamp(14px,3.6vw,17px);letter-spacing:.34em;text-indent:.34em;color:rgba(248,240,220,.92);opacity:0;animation:washIn 1.6s 6.1s ease both}
 @keyframes washIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(6,38,34,.36),transparent 24%,transparent 74%,rgba(6,38,34,.46))}
-#skip{position:absolute;z-index:3;top:max(18px,env(safe-area-inset-top));right:18px;padding:9px 16px;border:1px solid rgba(245,240,228,.32);font-size:9.5px;letter-spacing:.22em;color:var(--cream)}
-#skip:hover{border-color:var(--cream)}
+.vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(46,8,14,.36),transparent 24%,transparent 74%,rgba(46,8,14,.46))}
+#skip{position:absolute;z-index:3;top:max(18px,env(safe-area-inset-top));right:18px;padding:9px 16px;border:1px solid rgba(248,240,220,.32);font-size:9.5px;letter-spacing:.22em;color:var(--paper)}
+#skip:hover{border-color:var(--paper)}
 .petal{position:absolute;top:-8vh;z-index:2;pointer-events:none;border-radius:60% 60% 55% 55%/70% 70% 40% 40%;animation:fall linear infinite}
 @keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0);opacity:0}12%{opacity:.8}100%{transform:translate3d(var(--dx,20px),112vh,0) rotate(420deg);opacity:0}}
 
@@ -212,20 +215,20 @@ html[data-lang="pa"] .env-cap small{letter-spacing:.03em;font-size:12px}
 .chrome{position:fixed;z-index:60;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:max(14px,env(safe-area-inset-top)) 14px 12px;pointer-events:none}
 .chip{
   pointer-events:auto;display:inline-flex;align-items:center;padding:9px 15px;
-  background:rgba(12,58,53,.72);border:1px solid rgba(245,240,228,.22);
+  background:rgba(78,14,24,.72);border:1px solid rgba(248,240,220,.22);
   backdrop-filter:blur(12px);
-  font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);
+  font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);
   transition:background .25s,border-color .25s;
 }
 html[data-lang="pa"] .chip{font-family:var(--gurmukhi);letter-spacing:.02em;text-transform:none;font-size:13px}
-.chip:hover{background:var(--water);border-color:rgba(245,240,228,.5)}
+.chip:hover{background:var(--deep);border-color:rgba(248,240,220,.5)}
 .chip[aria-pressed="true"]{background:var(--red);border-color:var(--red)}
 /* disco della musica */
 .disc{
   pointer-events:auto;
   width:48px;height:48px;padding:0;border-radius:50%;
   display:block;position:relative;
-  box-shadow:0 4px 16px rgba(6,38,34,.4);
+  box-shadow:0 4px 16px rgba(46,8,14,.4);
   opacity:.82;
   transition:opacity .3s ease,transform .3s ease;
 }
@@ -243,7 +246,7 @@ html[data-lang="pa"] .chip{font-family:var(--gurmukhi);letter-spacing:.02em;text
   content:"";position:absolute;left:50%;top:50%;
   width:0;height:0;
   margin:-5px 0 0 -3px;
-  border-left:8px solid var(--cream);
+  border-left:8px solid var(--paper);
   border-top:5.5px solid transparent;
   border-bottom:5.5px solid transparent;
   opacity:.92;transition:opacity .3s ease;
@@ -256,14 +259,14 @@ html[data-lang="pa"] .chip{font-family:var(--gurmukhi);letter-spacing:.02em;text
 .disc.nomusic::after{
   border:0;width:13px;height:1.4px;
   margin:-.7px 0 0 -6.5px;
-  background:var(--cream);
+  background:var(--paper);
   transform:rotate(-32deg);
 }
 
 .lang-sw{padding:4px}
 .lang-sw b{display:block;padding:5px 11px;font-weight:400;font-size:9.5px;letter-spacing:.14em}
 html[data-lang="pa"] .lang-sw b{font-size:12px}
-.lang-sw b.on{background:var(--cream);color:var(--water)}
+.lang-sw b.on{background:var(--paper);color:var(--deep)}
 
 /* ============================================================
    HERO — sul fermo immagine del laghetto
@@ -272,7 +275,7 @@ html[data-lang="pa"] .lang-sw b{font-size:12px}
   position:relative;min-height:100svh;
   display:flex;flex-direction:column;justify-content:center;
   padding:130px var(--pad) 70px;
-  background:var(--water-3);
+  background:var(--deep-3);
   isolation:isolate;
 }
 .hero::before{
@@ -282,32 +285,32 @@ html[data-lang="pa"] .lang-sw b{font-size:12px}
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(to bottom,rgba(6,38,34,.82),rgba(6,38,34,.6) 38%,rgba(6,38,34,.9));
+  background:linear-gradient(to bottom,rgba(46,8,14,.82),rgba(46,8,14,.6) 38%,rgba(46,8,14,.9));
 }
-.hero-inner{max-width:var(--maxw);margin:0 auto;width:100%;text-align:center;color:var(--cream)}
-.hero .label{color:rgba(245,240,228,.6)}
-.seal{margin:0 auto 26px;font-family:var(--ek);font-size:28px;color:var(--gold);line-height:1}
+.hero-inner{max-width:var(--maxw);margin:0 auto;width:100%;text-align:center;color:var(--paper)}
+.hero .label{color:rgba(248,240,220,.6)}
+.seal{margin:0 auto 26px;font-family:var(--ek);font-size:28px;color:var(--gold-lt);line-height:1}
 .blessing{margin:0 0 34px}
-.names{margin:0;font-size:clamp(46px,13.5vw,96px);color:var(--cream)}
+.names{margin:0;font-size:clamp(46px,13.5vw,96px);color:var(--gold-lt)}
 .amp{display:block;margin:.1em 0;font-style:italic;font-size:.44em;color:var(--gold);line-height:1}
 html[data-lang="pa"] .amp{font-style:normal;font-size:.4em}
 .datepill{
   display:block;margin:40px auto 0;max-width:420px;padding:18px 0;
   border-top:1px solid var(--line-lt);border-bottom:1px solid var(--line-lt);
   font-size:10.5px;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
-  color:var(--cream);
+  color:var(--paper);
 }
 html[data-lang="pa"] .datepill{font-family:var(--gurmukhi);letter-spacing:.02em;text-indent:0;text-transform:none;font-size:15px}
-.hero-copy{margin:30px auto 0;max-width:34ch;color:rgba(245,240,228,.78);font-weight:300}
-.venue{margin:26px 0 0;color:rgba(245,240,228,.55)}
+.hero-copy{margin:30px auto 0;max-width:34ch;color:rgba(248,240,220,.78);font-weight:300}
+.venue{margin:26px 0 0;color:rgba(248,240,220,.55)}
 .count-wrap{margin-top:58px}
-.count-label{margin-bottom:22px;color:rgba(245,240,228,.55)}
+.count-label{margin-bottom:22px;color:rgba(248,240,220,.55)}
 .count{display:grid;grid-template-columns:repeat(4,1fr);max-width:400px;margin:0 auto}
 .count div{padding:0 4px}
-.count b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(34px,9.5vw,48px);line-height:1;color:var(--cream);font-variant-numeric:tabular-nums}
-.count span{display:block;margin-top:10px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,228,.5)}
+.count b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(34px,9.5vw,48px);line-height:1;color:var(--gold-lt);font-variant-numeric:tabular-nums}
+.count span{display:block;margin-top:10px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,240,220,.5)}
 html[data-lang="pa"] .count span{font-family:var(--gurmukhi);letter-spacing:0;text-transform:none;font-size:12px}
-.scroll-cue{margin-top:58px;color:rgba(245,240,228,.5);animation:nudge 2.6s ease-in-out infinite}
+.scroll-cue{margin-top:58px;color:rgba(248,240,220,.5);animation:nudge 2.6s ease-in-out infinite}
 @keyframes nudge{0%,100%{opacity:.5}50%{opacity:1}}
 
 /* ============================================================
@@ -320,17 +323,17 @@ html[data-lang="pa"] .count span{font-family:var(--gurmukhi);letter-spacing:0;te
 html[data-lang="pa"] .sec-head h2{font-family:var(--gurmukhi);font-weight:600;font-size:clamp(29px,7.4vw,48px);line-height:1.22}
 .sec-head p{margin:24px auto 0;max-width:36ch;font-family:var(--display);font-style:italic;font-size:clamp(17px,4.2vw,21px);line-height:1.5;color:var(--ink-2)}
 html[data-lang="pa"] .sec-head p{font-family:var(--gurmukhi);font-style:normal;font-size:clamp(15px,3.8vw,17px);line-height:1.8}
-.sec-dark{background:var(--water);color:var(--cream)}
-.sec-dark .sec-head h2,.sec-dark .display{color:var(--cream)}
-.sec-dark .sec-head p,.sec-dark .body-txt{color:rgba(245,240,228,.75)}
-.sec-dark .label{color:rgba(245,240,228,.5)}
+.sec-dark{background:var(--deep);color:var(--paper)}
+.sec-dark .sec-head h2,.sec-dark .display{color:var(--paper)}
+.sec-dark .sec-head p,.sec-dark .body-txt{color:rgba(248,240,220,.75)}
+.sec-dark .label{color:rgba(248,240,220,.5)}
 .sec-dark .rule{background:var(--line-lt)}
 
 .invocation{
   margin:0 0 32px;
   font-family:var(--display);font-style:italic;
   font-size:clamp(16px,4vw,20px);
-  color:rgba(245,240,228,.82);
+  color:rgba(248,240,220,.82);
   letter-spacing:0;text-transform:none;
 }
 html[data-lang="pa"] .invocation{
@@ -341,50 +344,85 @@ html[data-lang="pa"] .invocation{
 .satgur{
   margin:0 0 26px;font-family:var(--ek);
   font-size:13px;letter-spacing:.06em;
-  color:rgba(245,240,228,.55);
+  color:rgba(248,240,220,.55);
 }
 
 /* ---------- galleria ---------- */
 .gal-sec{padding-top:clamp(60px,11vw,100px);padding-bottom:clamp(60px,11vw,100px)}
 .gallery{display:grid;gap:clamp(14px,3vw,22px)}
-.gallery figure{margin:0;overflow:hidden;background:var(--cream-2);aspect-ratio:4/5}
+.gallery figure{margin:0;overflow:hidden;background:var(--paper-2);aspect-ratio:4/5}
 .gallery figure img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- storia ---------- */
 .story{display:grid;gap:clamp(64px,12vw,96px)}
 .chapter{text-align:center}
-.chapter figure{margin:0 0 24px;overflow:hidden;background:var(--cream-2);aspect-ratio:4/5}
+.chapter figure{margin:0 0 24px;overflow:hidden;background:var(--paper-2);aspect-ratio:4/5}
 .chapter figure img{width:100%;height:100%;object-fit:cover}
 .chapter .ch-no{display:block;margin-bottom:14px}
 .chapter h3{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(27px,6.6vw,38px);line-height:1.08;letter-spacing:-.015em}
 html[data-lang="pa"] .chapter h3{font-family:var(--gurmukhi);font-weight:600;font-size:clamp(21px,5.2vw,27px);line-height:1.3}
 .chapter .ch-place{display:block;margin-top:16px}
 
-/* ---------- famiglie ---------- */
-.families{display:grid;gap:clamp(48px,10vw,70px);text-align:center}
-.fam-role{margin:0 0 16px}
-.fam-name{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(24px,5.8vw,33px);line-height:1.12;letter-spacing:-.012em}
-html[data-lang="pa"] .fam-name{font-family:var(--gurmukhi);font-weight:600;font-size:clamp(19px,4.6vw,25px);line-height:1.35}
-.fam-line{margin:18px auto 0;max-width:32ch;font-size:15px;font-weight:300}
-.fam-child{margin:16px 0 0;font-family:var(--display);font-style:italic;font-size:clamp(24px,6vw,32px);color:var(--gold)}
-html[data-lang="pa"] .fam-child{font-family:var(--gurmukhi);font-style:normal;font-size:clamp(19px,4.8vw,25px)}
-.fam-gp{
-  margin:10px auto 0;max-width:30ch;
-  font-size:13.5px;font-weight:300;
-  color:rgba(245,240,228,.6);
+/* ---------- blocco invito ---------- */
+.families{text-align:center;max-width:38ch;margin:0 auto}
+.inv-hosts{
+  margin:0;font-weight:400;
+  font-size:clamp(25px,6vw,36px);line-height:1.14;letter-spacing:-.012em;
 }
-html[data-lang="pa"] .fam-gp{font-family:var(--gurmukhi);font-size:14px}
-.fam-join{
-  margin:0 auto;padding:36px 0 0;max-width:38ch;
+html[data-lang="pa"] .inv-hosts{font-size:clamp(20px,4.8vw,27px);line-height:1.4}
+.inv-line{
+  margin:20px auto 0;max-width:34ch;
+  font-size:14.5px;font-weight:300;line-height:1.8;
+  color:rgba(248,240,220,.72);
+}
+html[data-lang="pa"] .inv-line{font-family:var(--gurmukhi);font-size:15px;line-height:2.05}
+.inv-name{
+  margin:30px 0 0;
+  font-family:var(--display);font-style:italic;font-weight:400;
+  font-size:clamp(34px,9vw,52px);line-height:1;letter-spacing:-.015em;
+  color:var(--gold-lt);
+}
+html[data-lang="pa"] .inv-name{
+  font-family:var(--gurmukhi);font-style:normal;font-weight:600;
+  font-size:clamp(26px,7vw,38px);line-height:1.25;
+}
+.inv-sub{
+  margin:12px auto 0;max-width:32ch;
+  font-size:13.5px;font-weight:300;
+  color:rgba(248,240,220,.6);
+}
+html[data-lang="pa"] .inv-sub{font-family:var(--gurmukhi);font-size:14px;line-height:1.8}
+.inv-mid{
+  margin:26px 0 0;
+  font-family:var(--display);font-style:italic;
+  font-size:clamp(16px,4vw,20px);
+  color:rgba(248,240,220,.66);
+}
+html[data-lang="pa"] .inv-mid{
+  font-family:var(--gurmukhi);font-style:normal;
+  font-size:clamp(15px,3.8vw,18px);color:rgba(248,240,220,.78);
+}
+.inv-close{
+  margin:36px auto 0;max-width:34ch;padding-top:30px;
   border-top:1px solid var(--line-lt);
   font-family:var(--display);font-style:italic;
-  font-size:clamp(19px,4.8vw,25px);line-height:1.45;
+  font-size:clamp(17px,4.2vw,21px);line-height:1.5;
+  color:rgba(248,240,220,.82);
 }
-html[data-lang="pa"] .fam-join{font-family:var(--gurmukhi);font-style:normal;font-size:clamp(16px,4vw,19px);line-height:1.75}
+html[data-lang="pa"] .inv-close{
+  font-family:var(--gurmukhi);font-style:normal;
+  font-size:clamp(15px,3.8vw,18px);line-height:1.9;
+}
 
 /* ---------- eventi ---------- */
 .events{display:grid}
-.event{padding:34px 0;border-top:1px solid var(--line);text-align:center}
+.event{
+  padding:34px 0;border-top:1px solid var(--line);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.ev-txt{width:100%}
+.ev-ico{width:min(58vw,220px);margin:0 auto 6px;order:-1}
+.ev-ico img{width:100%;height:auto;display:block}
 .event:last-child{border-bottom:1px solid var(--line)}
 .ev-day{display:block;margin-bottom:14px}
 .ev-name{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(31px,8vw,48px);line-height:1;letter-spacing:-.02em}
@@ -402,22 +440,23 @@ html[data-lang="pa"] .ev-dress{font-family:var(--gurmukhi);font-style:normal;fon
   transition:background .25s,color .25s,border-color .25s;
 }
 html[data-lang="pa"] .btn{font-family:var(--gurmukhi);letter-spacing:.02em;text-transform:none;font-size:13px}
-.btn:hover{background:var(--water);border-color:var(--water);color:var(--cream)}
-.btn.filled{background:var(--cream);border-color:var(--cream);color:var(--water)}
-.btn.filled:hover{background:transparent;color:var(--cream);border-color:var(--cream)}
+.btn:hover{background:var(--deep);border-color:var(--deep);color:var(--paper)}
+.btn.filled{background:var(--paper);border-color:var(--paper);color:var(--deep)}
+.btn.filled:hover{background:transparent;color:var(--paper);border-color:var(--paper)}
 
 /* ---------- chiusura, anch'essa sul laghetto ---------- */
-.close{position:relative;text-align:center;background:var(--water-3);isolation:isolate;color:var(--cream)}
+.close{position:relative;text-align:center;background:var(--deep-3);isolation:isolate;color:var(--paper)}
 .close::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--hero-img,url('pond-9x16.jpg'));background-size:cover;background-position:center 30%}
-.close::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(6,38,34,.84)}
-.close .script{display:block;font-size:clamp(40px,11vw,68px);line-height:1;color:var(--cream)}
+.close::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(46,8,14,.84)}
+.close .script{display:block;font-size:clamp(40px,11vw,68px);line-height:1;color:var(--gold-lt)}
 html[data-lang="pa"] .close .script{font-size:clamp(25px,6.6vw,36px)}
-.close p{margin:28px auto 0;max-width:32ch;color:rgba(245,240,228,.78)}
+.close p{margin:28px auto 0;max-width:32ch;color:rgba(248,240,220,.78)}
 .close .btn{margin-top:36px}
+.hrt{color:var(--red);font-size:1.15em;vertical-align:-.06em;letter-spacing:0;margin:0 .35em}
 .foot{
   padding:40px var(--pad) calc(40px + env(safe-area-inset-bottom));
-  background:var(--water-3);text-align:center;
-  color:rgba(245,240,228,.36);
+  background:var(--deep-3);text-align:center;
+  color:rgba(248,240,220,.36);
   font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
 }
 html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text-transform:none;font-size:12px}
@@ -435,12 +474,24 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
   .hero-inner{max-width:820px}
   .story{grid-template-columns:repeat(2,1fr);column-gap:64px;row-gap:110px}
   .gallery{grid-template-columns:repeat(3,1fr)}
-  .gallery figure:nth-child(2){margin-top:56px}
+  .gallery figure:nth-child(1),
+  .gallery figure:nth-child(3){margin-top:64px}
   .chapter:nth-child(even){margin-top:100px}
-  .families{grid-template-columns:1fr 1fr;column-gap:64px}
-  .fam-join{grid-column:1/-1;margin-top:16px}
-  .event{padding:44px 0}
-  .ev-meta li{margin-bottom:3px}
+  .families{max-width:44ch}
+  .event{
+    padding:52px 0;
+    flex-direction:row;align-items:center;
+    gap:48px;text-align:left;
+  }
+  .event.flip{flex-direction:row-reverse}
+  .ev-ico{flex:0 0 240px;width:240px;margin:0;order:0}
+  .ev-txt{flex:1;min-width:0}
+  .event.flip .ev-txt{text-align:right}
+  .event.flip .ev-meta li{flex-direction:row-reverse}
+  .event.flip .ev-acts{justify-content:flex-end}
+  .ev-meta li{justify-content:flex-start;margin-bottom:3px}
+  .ev-acts{justify-content:flex-start}
+  .ev-num{left:auto;right:4%;transform:translateY(-50%)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -526,17 +577,17 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
 
         <!-- groom, cream -->
         <g>
-          <rect x="192" y="386" width="8.5" height="42" rx="4.2" fill="#F3E5C8"/>
+          <rect x="192" y="386" width="8.5" height="42" rx="4.2" fill="#E5C079"/>
           <circle cx="196.2" cy="381" r="5.4" fill="#3A2418"/>
-          <path d="M193 396 L182 404" stroke="#F3E5C8" stroke-width="3.4" stroke-linecap="round"/>
-          <path d="M200 396 L206 390" stroke="#F3E5C8" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M193 396 L182 404" stroke="#E5C079" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M200 396 L206 390" stroke="#E5C079" stroke-width="3.4" stroke-linecap="round"/>
         </g>
         <!-- bride, red -->
         <g>
-          <rect x="200" y="386" width="8.5" height="42" rx="4.2" fill="#B01F33"/>
+          <rect x="200" y="386" width="8.5" height="42" rx="4.2" fill="#CF5165"/>
           <circle cx="204.3" cy="381" r="5.4" fill="#2B1712"/>
-          <path d="M207 396 L218 404" stroke="#B01F33" stroke-width="3.4" stroke-linecap="round"/>
-          <path d="M201 396 L195 390" stroke="#B01F33" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M207 396 L218 404" stroke="#CF5165" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M201 396 L195 390" stroke="#CF5165" stroke-width="3.4" stroke-linecap="round"/>
         </g>
       </g>
     </g>
@@ -559,17 +610,17 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
           data-lbl-play-en="Riproduci la musica" data-lbl-stop-en="Ferma la musica"
           aria-label="Riproduci la musica">
     <svg viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="50" fill="#08221F"/>
-      <g fill="none" stroke="#1E4B45" stroke-width="1">
+      <circle cx="50" cy="50" r="50" fill="#3E0A12"/>
+      <g fill="none" stroke="#7A2130" stroke-width="1">
         <circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="42"/>
         <circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="34"/>
         <circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="26"/>
       </g>
-      <path d="M50 2 A48 48 0 0 1 92 28" stroke="#4E7D75" stroke-width="2.4" fill="none" opacity=".55" stroke-linecap="round"/>
-      <path d="M50 98 A48 48 0 0 1 8 72" stroke="#4E7D75" stroke-width="2.4" fill="none" opacity=".35" stroke-linecap="round"/>
-      <circle cx="50" cy="50" r="20" fill="#9B1F2E"/>
-      <circle cx="50" cy="50" r="20" fill="none" stroke="#BE8A3D" stroke-width="1" opacity=".6"/>
-      <circle cx="50" cy="50" r="3.4" fill="#F5F0E4"/>
+      <path d="M50 2 A48 48 0 0 1 92 28" stroke="#E7C87E" stroke-width="2.4" fill="none" opacity=".55" stroke-linecap="round"/>
+      <path d="M50 98 A48 48 0 0 1 8 72" stroke="#E7C87E" stroke-width="2.4" fill="none" opacity=".35" stroke-linecap="round"/>
+      <circle cx="50" cy="50" r="20" fill="#B02A38"/>
+      <circle cx="50" cy="50" r="20" fill="none" stroke="#E7C87E" stroke-width="1" opacity=".6"/>
+      <circle cx="50" cy="50" r="3.4" fill="#FFFCF4"/>
     </svg>
   </button>
 </div>
@@ -629,22 +680,21 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
     </div>
 
     <div class="families">
-      <div class="fam-side rv">
-        <p class="fam-role label" data-en="THE GROOM'S FAMILY" data-pa="ਮੁੰਡੇ ਵਾਲੇ">THE GROOM'S FAMILY</p>
-        <h3 class="fam-name display" data-en="S. Kewal Singh &amp; Smt. Baljit Kaur" data-pa="ਸ. ਕੇਵਲ ਸਿੰਘ ਤੇ ਸ੍ਰੀਮਤੀ ਬਲਜੀਤ ਕੌਰ">S. Kewal Singh &amp; Smt. Baljit Kaur</h3>
-        <p class="fam-line body-txt" data-en="request the pleasure of your company at the wedding of their beloved son" data-pa="ਆਪ ਜੀ ਨੂੰ ਆਪਣੇ ਲਾਡਲੇ ਪੁੱਤਰ ਦੇ ਵਿਆਹ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੰਦੇ ਹਨ">request the pleasure of your company at the wedding of their beloved son</p>
-        <p class="fam-child" data-en="Manroop Singh" data-pa="ਮਨਰੂਪ ਸਿੰਘ">Manroop Singh</p>
-        <p class="fam-gp" data-en="Grandson of S. Sucha Singh, Kesarpur" data-pa="ਸ. ਸੂਚਾ ਸਿੰਘ ਦਾ ਪੋਤਰਾ, ਕੇਸਰਪੁਰ">Grandson of S. Sucha Singh, Kesarpur</p>
-      </div>
+      <p class="inv-hosts display rv" data-en="Sardar Kewal Singh &amp; Sardarni Baljit Kaur" data-pa="ਸਰਦਾਰ ਕੇਵਲ ਸਿੰਘ ਤੇ ਸਰਦਾਰਨੀ ਬਲਜੀਤ ਕੌਰ">Sardar Kewal Singh &amp; Sardarni Baljit Kaur</p>
 
-      <div class="fam-side rv">
-        <p class="fam-role label" data-en="THE BRIDE'S FAMILY" data-pa="ਕੁੜੀ ਵਾਲੇ">THE BRIDE'S FAMILY</p>
-        <h3 class="fam-name display" data-en="S. Gurmail Singh &amp; Smt. Kulwinder Kaur" data-pa="ਸ. ਗੁਰਮੇਲ ਸਿੰਘ ਤੇ ਸ੍ਰੀਮਤੀ ਕੁਲਵਿੰਦਰ ਕੌਰ">S. Gurmail Singh &amp; Smt. Kulwinder Kaur</h3>
-        <p class="fam-line body-txt" data-en="request the pleasure of your company at the wedding of their beloved daughter" data-pa="ਆਪ ਜੀ ਨੂੰ ਆਪਣੀ ਲਾਡਲੀ ਧੀ ਦੇ ਵਿਆਹ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੰਦੇ ਹਨ">request the pleasure of your company at the wedding of their beloved daughter</p>
-        <p class="fam-child" data-en="Sukhpreet Kaur" data-pa="ਸੁਖਪ੍ਰੀਤ ਕੌਰ">Sukhpreet Kaur</p>
-      </div>
+      <p class="inv-line rv" data-en="with hearts full of joy, warmly invite you to the Anand Karaj of their beloved son" data-pa="ਆਪਣੇ ਦਿਲ ਦੀਆਂ ਤਹਿਆਂ ਵਿੱਚੋਂ ਮੋਹ ਭਿੱਜੇ ਬੋਲਾਂ ਨਾਲ ਤੁਹਾਨੂੰ ਸੱਦਾ ਦਿੰਦੇ ਹਨ ਕਿ ਸਾਡੇ ਸਪੁੱਤਰ">with hearts full of joy, warmly invite you to the Anand Karaj of their beloved son</p>
 
-      </div>
+      <p class="inv-name rv" data-en="Manroop Singh" data-pa="ਮਨਰੂਪ ਸਿੰਘ">Manroop Singh</p>
+      <p class="inv-sub rv" data-en="Grandson of Sardar Sucha Singh Ji Mattu" data-pa="ਸਰਦਾਰ ਸੂਚਾ ਸਿੰਘ ਜੀ ਮੱਟੂ ਦਾ ਦੋਹਤਾ">Grandson of Sardar Sucha Singh Ji Mattu</p>
+
+      <p class="inv-mid rv" data-en="whose Anand Karaj is to take place with" data-pa="ਦਾ ਸ਼ੁਭ ਅਨੰਦ ਕਾਰਜ">whose Anand Karaj is to take place with</p>
+
+      <p class="inv-name rv" data-en="Sukhpreet Kaur" data-pa="ਸੁਖਪ੍ਰੀਤ ਕੌਰ">Sukhpreet Kaur</p>
+      <p class="inv-sub rv" data-en="Daughter of Sardar Gurmail Singh &amp; Sardarni Kulwinder Kaur" data-pa="(ਸਪੁੱਤਰੀ ਸਰਦਾਰ ਗੁਰਮੇਲ ਸਿੰਘ ਤੇ ਸਰਦਾਰਨੀ ਕੁਲਵਿੰਦਰ ਕੌਰ)">Daughter of Sardar Gurmail Singh &amp; Sardarni Kulwinder Kaur</p>
+
+      <p class="inv-close rv" data-en="Your presence will make the occasion complete." data-pa="ਦੇ ਨਾਲ ਹੋਣਾ ਨੀਯਤ ਹੋਇਆ ਹੈ।">Your presence will make the occasion complete.</p>
+
+    </div>
   </div>
 </section>
 
@@ -664,12 +714,12 @@ html[data-lang="pa"] .foot{font-family:var(--gurmukhi);letter-spacing:.02em;text
   <div class="sec-inner rv">
     <span class="script" data-en="Come share our family&#39;s joy" data-pa="ਸਾਡੇ ਘਰ ਦੀ ਖ਼ੁਸ਼ੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ ਜੀ">Come share our family&#39;s joy</span>
     <div class="dbl" style="margin-top:22px"><svg viewBox="0 0 24 30" aria-hidden="true"><path d="M12 1c6 3 10 8 10 14 0 6-4 10-9 10-4 0-7-3-7-7 0-4 3-6 6-6 2 0 4 1 4 3"/><path d="M12 1c-3 4-5 8-5 12"/></svg></div>
-    <p class="body-txt" data-en="Please let us know if you can join us." data-pa="ਆਉਣ ਬਾਰੇ ਦੱਸ ਦਿਓ ਜੀ।">Please let us know if you can join us.</p>
+    <p class="body-txt" data-en="Please confirm your presence by clicking below. Thank you." data-pa="ਹੇਠਾਂ ਕਲਿੱਕ ਕਰਕੇ ਆਪਣੀ ਹਾਜ਼ਰੀ ਪੱਕੀ ਕਰੋ ਜੀ। ਧੰਨਵਾਦ।">Please confirm your presence by clicking below. Thank you.</p>
     <a class="btn filled" id="rsvpBtn" href="https://wa.me/00000000000?text=We%20are%20coming!" target="_blank" rel="noopener" data-en="Confirm on WhatsApp" data-pa="ਵਟਸਐਪ ਤੇ ਦੱਸੋ">Confirm on WhatsApp</a>
   </div>
 </section>
 
-<div class="foot" data-en="MANROOP &amp; SUKHPREET · 30 JANUARY 2027 · KESARPUR" data-pa="ਮਨਰੂਪ ਤੇ ਸੁਖਪ੍ਰੀਤ · 30 ਜਨਵਰੀ 2027 · ਕੇਸਰਪੁਰ">MANROOP &amp; SUKHPREET · 30 JANUARY 2027 · KESARPUR</div>
+<div class="foot" data-en="MANROOP <span class=&quot;hrt&quot;>&#9829;</span> SUKHPREET &nbsp;·&nbsp; 30 JANUARY 2027" data-pa="ਮਨਰੂਪ <span class=&quot;hrt&quot;>&#9829;</span> ਸੁਖਪ੍ਰੀਤ &nbsp;·&nbsp; 30 ਜਨਵਰੀ 2027">MANROOP <span class="hrt">&#9829;</span> SUKHPREET &nbsp;·&nbsp; 30 JANUARY 2027</div>
 
 <script>
 /* ============================================================
@@ -680,25 +730,28 @@ const EVENTS = [
     day:{en:"MONDAY 25 JANUARY",pa:"\u0a38\u0a4b\u0a2e\u0a35\u0a3e\u0a30 25 \u0a1c\u0a28\u0a35\u0a30\u0a40"},
     name:{en:"Akhand Path Arambh",pa:"\u0a05\u0a16\u0a70\u0a21 \u0a2a\u0a3e\u0a20 \u0a06\u0a30\u0a70\u0a2d"},
     time:{en:"",pa:""},
-    place:{en:"Residence of S. Sucha Singh, Kesarpur",pa:"\u0a38. \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
+    place:{en:"Residence of Sardar Sucha Singh Ji Mattu, Kesarpur",pa:"\u0a38\u0a30\u0a26\u0a3e\u0a30 \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a1c\u0a40 \u0a2e\u0a71\u0a1f\u0a42 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
     start:"2027-01-25T09:00:00+05:30", end:"2027-01-25T11:00:00+05:30",
-    map:"Kesarpur, Kapurthala, Punjab"
+    map:"Kesarpur, Kapurthala, Punjab",
+    icon:"icons/ev-path.webp"
   },
   {
     day:{en:"WEDNESDAY 27 JANUARY",pa:"\u0a2c\u0a41\u0a71\u0a27\u0a35\u0a3e\u0a30 27 \u0a1c\u0a28\u0a35\u0a30\u0a40"},
     name:{en:"Bhog",pa:"\u0a2d\u0a4b\u0a17"},
     time:{en:"12:30 PM",pa:"\u0a26\u0a41\u0a2a\u0a39\u0a3f\u0a30 12:30"},
-    place:{en:"Residence of S. Sucha Singh, Kesarpur",pa:"\u0a38. \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
+    place:{en:"Residence of Sardar Sucha Singh Ji Mattu, Kesarpur",pa:"\u0a38\u0a30\u0a26\u0a3e\u0a30 \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a1c\u0a40 \u0a2e\u0a71\u0a1f\u0a42 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
     start:"2027-01-27T12:30:00+05:30", end:"2027-01-27T15:00:00+05:30",
-    map:"Kesarpur, Kapurthala, Punjab"
+    map:"Kesarpur, Kapurthala, Punjab",
+    icon:"icons/ev-bhog.webp"
   },
   {
     day:{en:"WEDNESDAY 27 JANUARY",pa:"\u0a2c\u0a41\u0a71\u0a27\u0a35\u0a3e\u0a30 27 \u0a1c\u0a28\u0a35\u0a30\u0a40"},
     name:{en:"Jaago",pa:"\u0a1c\u0a3e\u0a17\u0a4b"},
     time:{en:"7:00 PM",pa:"\u0a38\u0a3c\u0a3e\u0a2e 7:00"},
-    place:{en:"Residence of S. Sucha Singh, Kesarpur",pa:"\u0a38. \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
+    place:{en:"Residence of Sardar Sucha Singh Ji Mattu, Kesarpur",pa:"\u0a38\u0a30\u0a26\u0a3e\u0a30 \u0a38\u0a42\u0a1a\u0a3e \u0a38\u0a3f\u0a70\u0a18 \u0a1c\u0a40 \u0a2e\u0a71\u0a1f\u0a42 \u0a26\u0a3e \u0a28\u0a3f\u0a35\u0a3e\u0a38, \u0a15\u0a47\u0a38\u0a30\u0a2a\u0a41\u0a30"},
     start:"2027-01-27T19:00:00+05:30", end:"2027-01-27T23:30:00+05:30",
-    map:"Kesarpur, Kapurthala, Punjab"
+    map:"Kesarpur, Kapurthala, Punjab",
+    icon:"icons/ev-jaago.webp"
   },
   {
     day:{en:"SATURDAY 30 JANUARY",pa:"\u0a38\u0a3c\u0a28\u0a40\u0a35\u0a3e\u0a30 30 \u0a1c\u0a28\u0a35\u0a30\u0a40"},
@@ -706,7 +759,8 @@ const EVENTS = [
     time:{en:"9:30 AM",pa:"\u0a38\u0a35\u0a47\u0a30\u0a47 9:30"},
     place:{en:"Gurdwara Sahib — to be confirmed",pa:"\u0a17\u0a41\u0a30\u0a26\u0a41\u0a06\u0a30\u0a3e \u0a38\u0a3e\u0a39\u0a3f\u0a2c \u2014 \u0a24\u0a48\u0a05 \u0a39\u0a4b\u0a23\u0a3e \u0a2c\u0a3e\u0a15\u0a40"},
     start:"2027-01-30T09:30:00+05:30", end:"2027-01-30T11:30:00+05:30",
-    map:"Kapurthala, Punjab"
+    map:"Kapurthala, Punjab",
+    icon:"icons/ev-anand.webp"
   },
   {
     day:{en:"SATURDAY 30 JANUARY",pa:"\u0a38\u0a3c\u0a28\u0a40\u0a35\u0a3e\u0a30 30 \u0a1c\u0a28\u0a35\u0a30\u0a40"},
@@ -714,7 +768,8 @@ const EVENTS = [
     time:{en:"12:30 PM",pa:"\u0a26\u0a41\u0a2a\u0a39\u0a3f\u0a30 12:30"},
     place:{en:"Venue to be announced",pa:"\u0a25\u0a3e\u0a02 \u0a26\u0a3e \u0a10\u0a32\u0a3e\u0a28 \u0a39\u0a4b\u0a23\u0a3e \u0a2c\u0a3e\u0a15\u0a40"},
     start:"2027-01-30T12:30:00+05:30", end:"2027-01-30T18:00:00+05:30",
-    map:"Kapurthala, Punjab"
+    map:"Kapurthala, Punjab",
+    icon:"icons/ev-reception.webp"
   }
 ];
 
@@ -763,8 +818,10 @@ function esc(s){return String(s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&'
 function buildEvents(){
   const wrap = document.getElementById('eventList');
   wrap.innerHTML = EVENTS.map((e,i)=>`
-    <article class="event rv">
+    <article class="event rv${i % 2 ? ' flip' : ''}">
       <span class="ev-num" aria-hidden="true">${i+1}</span>
+      ${e.icon ? `<div class="ev-ico"><img src="${e.icon}" alt="" loading="lazy"></div>` : ''}
+      <div class="ev-txt">
       <span class="ev-day label">${esc(e.day[LANG])}</span>
       <h3 class="ev-name display">${esc(e.name[LANG])}</h3>
       <ul class="ev-meta">
@@ -775,6 +832,7 @@ function buildEvents(){
         <a class="btn" target="_blank" rel="noopener"
            href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.map)}">${T.location[LANG]}</a>
         <button class="btn" data-ics="${i}">${T.cal[LANG]}</button>
+      </div>
       </div>
     </article>`).join('');
   wrap.querySelectorAll('[data-ics]').forEach(b=>{
@@ -1037,6 +1095,7 @@ function observeReveals(){
 
 /* boot */
 applyLang('en');
+observeReveals();
 </script>
 </body>
 </html>
